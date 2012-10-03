@@ -9,6 +9,8 @@
 
 @taskStateColor : darken(@taskStateBg1, 60%);
 
+@taskBg : #DDDDDD;
+
 @columnBg : #FFFFFF;
 
 // ----------
@@ -30,7 +32,7 @@
 }
 
 .task{
-    background-color:#ddd;
+    background-color:@taskBg;
     margin:5px;
     padding:5px;
     .clearfix();
@@ -44,10 +46,23 @@
             float:left;
             font-size:11px;
         }
+        input{
+            font-size:13px;
+            background-color:lighten(@taskBg, 10%);
+        }
     }
     .description{
         font-size:13px;
         padding:5px;
+        textarea{
+            width:95%;
+            font-size:13px;
+            background-color:lighten(@taskBg, 10%);
+        }
+    }
+    input[type=submit]{
+        float:right;
+        font-size:11px;
     }
     .actors{
         clear:both;
