@@ -1,0 +1,64 @@
+//
+// Scrum4test
+// --------------------------------------------------
+
+// Variables
+
+@taskStateBg1 : #F9F9F9;
+@taskStateBg2 : darken(@taskStateBg1, 10%);
+
+@taskStateColor : darken(@taskStateBg1, 60%);
+
+@columnBg : #FFFFFF;
+
+// ----------
+
+.column{
+    min-height:500px;
+    .box-shadow(0 0 1px rgba(0,0,0, .5) inset);
+    height:100%;
+    padding-bottom:30px;
+}
+
+.taskState{
+    #gradient > .vertical(@taskStateBg1, @taskStateBg2);
+    text-align:center;
+    padding:5px;
+    .box-shadow(0 2px 2px rgba(0,0,0,.1));
+    color:@taskStateColor;
+    margin-bottom:5px;
+}
+
+.task{
+    background-color:#ddd;
+    margin:5px;
+    padding:5px;
+    .clearfix();
+    .border-radius(3px);
+    .title{
+        border-bottom:solid 1px rgba(0,0,0,.1);
+        font-size:15px;
+        text-align:center;
+        cursor:move;
+        span{
+            float:left;
+            font-size:11px;
+        }
+    }
+    .description{
+        font-size:13px;
+        padding:5px;
+    }
+    .actors{
+        clear:both;
+        font-size:11px;
+    }
+    .actions{
+        float:right;
+        font-size:9px;
+    }
+}
+
+.columnHover{
+    background-color:darken(@columnBg, 10%);
+}
