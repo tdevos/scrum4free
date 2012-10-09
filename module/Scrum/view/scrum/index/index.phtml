@@ -1,0 +1,70 @@
+<?php
+    
+?>
+<div class="row tasks">
+    <div class="span4 column" id_status="1">
+        <div class="taskState">Wait</div>
+        <input type="button" class="addTask" value="Add a task">
+        <div class="taskAdding">
+            <?php 
+                $taskForm = $this->taskForm;
+                $taskForm->prepare();
+            ?>
+            <?= $this->form()->openTag($taskForm) ?>
+            <div class="block-title">
+            <label>Title</label>
+            <?= $this->formRow($taskForm->get("title")) ?>
+            </div>
+            <div class="block-time">
+            <label>Time</label>
+            <?= $this->formRow($taskForm->get("time")) ?>
+            </div>
+            <div class="block-description">
+            <label>Description</label>
+            <?= $this->formRow($taskForm->get("description")) ?>
+            </div>
+            <div class="block-actors">
+            <label>Actors</label>
+            <?= $this->formRow($taskForm->get("actors")) ?>
+            </div>
+            <?= $this->formInput($taskForm->get("submit")) ?>
+            <?= $this->form()->closeTag($taskForm) ?>
+        </div>
+        <?php
+        if(isset($this->allTasksByStatus[1]))
+        foreach ($this->allTasksByStatus[1] as $value) { ?>
+            <div class="task" id_task="<?= $value->id_task ?>">
+                <div class="title"><span class="taskId"><?= $value->id_task ?>.</span><?= $value->title ?><span class="timeAmount"><?= $value->time ?></span></div>
+                <div class="description"><?= $value->description ?></div>
+                <div class="actors"><?= $value->actors ?></div>
+                <div class="actions"><a href="#" class="delete" idTask="<?= $value->id_task ?>">Delete</a></div>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="span4 column" id_status="2">
+        <div class="taskState">In progress</div>
+        <?php 
+        if(isset($this->allTasksByStatus[2]))
+        foreach ($this->allTasksByStatus[2] as $value) { ?>
+            <div class="task" id_task="<?= $value->id_task ?>">
+                <div class="title"><span class="taskId"><?= $value->id_task ?>.</span><?= $value->title ?><span class="timeAmount"><?= $value->time ?></span></div>
+                <div class="description"><?= $value->description ?></div>
+                <div class="actors"><?= $value->actors ?></div>
+                <div class="actions"><a href="#" class="delete">Delete</a></div>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="span4 column" id_status="3">
+        <div class="taskState">Done</div>
+        <?php 
+        if(isset($this->allTasksByStatus[3]))
+        foreach ($this->allTasksByStatus[3] as $value) { ?>
+            <div class="task" id_task="<?= $value->id_task ?>">
+                <div class="title"><span class="taskId"><?= $value->id_task ?>.</span><?= $value->title ?><span class="timeAmount"><?= $value->time ?></span></div>
+                <div class="description"><?= $value->description ?></div>
+                <div class="actors"><?= $value->actors ?></div>
+                <div class="actions"><a href="#" class="delete">Delete</a></div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
