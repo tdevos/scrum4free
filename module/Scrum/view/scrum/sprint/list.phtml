@@ -1,0 +1,14 @@
+<h1>List of Sprints</h1>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Name</th><th>Start date</th><th>End date</th><th></th></tr>
+    </thead>
+    <?php foreach ($this->listSprints AS $sprint): ?>
+        <tr><td><?= $sprint->name; ?></td><td><?= $sprint->start_date; ?></td><td><?= $sprint->end_date; ?></td><td><a href="<?= $this->basePath() ?>">Détail</a></td></tr>
+        <?php
+    endforeach;
+    ?>
+    <tfoot>
+        <tr><td colspan="3"><a href="<?= $this->basePath() ?>/scrum/sprint/add" class="btn btn-primary">Add a project</a></td></tr>
+    </tfoot>
+</table>

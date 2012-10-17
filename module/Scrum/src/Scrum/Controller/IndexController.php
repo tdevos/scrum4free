@@ -24,6 +24,7 @@ class IndexController extends AbstractActionController
     
     public function indexAction()
     {
+        
         $sm = $this->getServiceLocator()->get("scrum_service_task");
         $allTaskByStatus = $sm->getAllByStatus();
         

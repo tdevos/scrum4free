@@ -1,0 +1,11 @@
+<?php
+
+$form = $this->storyForm;
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow()->render($form->get("name"));
+echo $this->formRow()->render($form->get("description"));
+echo $this->formRow()->render($form->get("status"));
+echo $this->formSubmit()->render($form->get("submit"));
+echo $this->form()->closeTag();

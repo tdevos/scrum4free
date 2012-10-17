@@ -1,0 +1,13 @@
+<?php
+
+$form = $this->sprintForm;
+$form->prepare();
+
+$form->setAttribute('method', 'post');
+
+echo $this->form()->openTag($form);
+echo $this->formRow()->render($form->get("name"));
+echo $this->formRow()->render($form->get("start_date"));
+echo $this->formRow()->render($form->get("end_date"));
+echo $this->formSubmit()->render($form->get("submit"));
+echo $this->form()->closeTag();

@@ -55,6 +55,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'navigation' => "Zend\Navigation\Service\DefaultNavigationFactory"
         ),
     ),
     'translator' => array(
@@ -88,4 +89,35 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'navigation' => array(
+        "default" => array(
+            "scrum" => array(
+                "route" => "scrum",
+                "label" => "Scrum",
+                "pages" => array(
+                    "project" => array(
+                        "controller" => "project",
+                        "label" => "Project",
+                        "pages" => array(
+                            "list" => array(
+                                "controller" => "project",
+                                "action" => "list",
+                                "label" => "Liste"
+                            ),
+                            "detail" => array(
+                                "controller" => "project",
+                                "action" => "detail",
+                                "label" => "Details"
+                            )
+                            ,"detail" => array(
+                                "controller" => "sprint",
+                                "action" => "detail",
+                                "label" => "Sprint"
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
 );

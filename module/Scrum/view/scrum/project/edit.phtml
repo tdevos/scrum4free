@@ -1,0 +1,12 @@
+<?php
+
+$form = $this->form;
+$form->prepare();
+
+$form->setAttribute('method', 'post');
+
+echo $this->form()->openTag($form);
+echo $this->formRow()->render($form->get("name"));
+echo $this->formRow()->render($form->get("description"));
+echo $this->formRow()->render($form->get("submit"));
+echo $this->form()->closeTag();

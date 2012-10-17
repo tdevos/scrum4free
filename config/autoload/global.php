@@ -24,5 +24,5 @@ return array(
             'Zend\Db\Adapter\Adapter'
                     => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
-    ),
+    )
 );

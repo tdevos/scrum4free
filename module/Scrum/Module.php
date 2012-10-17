@@ -12,8 +12,6 @@ namespace Scrum;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-use Scrum\Model\TaskTable AS TaskTable;
-
 class Module
 {
     public function onBootstrap(MvcEvent $e)
@@ -44,12 +42,34 @@ class Module
         return array(
             "invokables"=>array(
                 "scrum_service_task" => "Scrum\Service\Task",
-                "scrum_task_mapper" => "Scrum\Mapper\Task"
+                "scrum_service_project" => "Scrum\Service\Project",
+                "scrum_service_story" => "Scrum\Service\Story",
+                "scrum_service_sprint" => "Scrum\Service\Sprint",
+                
+                "scrum_task_mapper" => "Scrum\Mapper\Task",
+                "scrum_project_mapper" => "Scrum\Mapper\Project",
+                "scrum_story_mapper" => "Scrum\Mapper\Story",
+                "scrum_sprint_mapper" => "Scrum\Mapper\Sprint"
             ),
             "factories" => array(
                 "Scrum\Model\TaskTable" => function($sm){
                     $dbAdapter = $sm->get("Zend\Db\Adapter\Adapter");
-                    $table = new TaskTable($dbAdapter);
+                    $table = new Model\TaskTable($dbAdapter);
+                    return $table;
+                },
+                "Scrum\Model\ProjectTable" => function($sm){
+                    $dbAdapter = $sm->get("Zend\Db\Adapter\Adapter");
+                    $table = new Model\ProjectTable($dbAdapter);
+                    return $table;
+                },
+                "Scrum\Model\StoryTable" => function($sm){
+                    $dbAdapter = $sm->get("Zend\Db\Adapter\Adapter");
+                    $table = new Model\StoryTable($dbAdapter);
+                    return $table;
+                },
+                "Scrum\Model\SprintTable" => function($sm){
+                    $dbAdapter = $sm->get("Zend\Db\Adapter\Adapter");
+                    $table = new Model\SprintTable($dbAdapter);
                     return $table;
                 }
             )

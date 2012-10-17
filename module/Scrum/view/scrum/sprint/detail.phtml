@@ -1,0 +1,27 @@
+<?php
+
+$sprintDetails = $this->sprintDetails;
+$linkForm = $this->linkForm;
+
+?>
+<h1><?= $sprintDetails->name ?><a class="btn" href="<?= $this->basePath() . "/scrum/sprint/edit/" . $sprintDetails->id_sprint ?>">Edit</a></h1>
+<span>From <?= $sprintDetails->start_date ?> to <?= $sprintDetails->end_date ?></span>
+
+<h1>List of stories</h1>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Name</th><th>Description</th><th>Status</th><th></th></tr>
+    </thead>
+    <?php foreach ($this->listStories AS $story): ?>
+        <tr><td><?= $story->name; ?></td><td><?= $story->description; ?></td><td><?= $story->status; ?></td><td><a href="<?= $this->basePath() ?>">Détail</a></td></tr>
+        <?php
+    endforeach;
+    ?>
+    <tfoot>
+        <tr><td colspan="3">
+                <?= $this->form()->openTag($linkForm) ?>
+                <?= $this->formRow($linkForm->get("fk_id_story")); ?>
+                <?= $this->formRow($linkForm->get("submit")); ?>
+                <?= $this->form()->closeTag() ?>
+    </tfoot>
+</table>
