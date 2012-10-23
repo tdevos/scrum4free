@@ -17,8 +17,8 @@
         
     </head>
     <body>
-        <div class="container">
-            <div class="navbar">
+        <div class="navbar">
+            <div class="container">
                 <div class="navbar-inner">
                     <a class="brand" href="#">Scrum4free</a>
                     <ul class="nav">
@@ -28,8 +28,10 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="container">
             <?php 
-            echo $this->navigation("navigation")->breadCrumbs();
+//            echo $this->navigation("navigation")->breadCrumbs();
             echo $this->content; ?>
         </div>
         <?php echo $this->inlineScript() ?>

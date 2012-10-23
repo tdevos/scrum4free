@@ -4,21 +4,21 @@ $sprintDetails = $this->sprintDetails;
 $linkForm = $this->linkForm;
 
 ?>
-<h1><?= $sprintDetails->name ?><a class="btn" href="<?= $this->basePath() . "/scrum/sprint/edit/" . $sprintDetails->id_sprint ?>">Edit</a></h1>
+<a href="<?= $this->basePath() ?>/scrum/project/detail/<?= $sprintDetails->fk_id_project ?>">Back to Project</a>
+<h1>Sprint : <?= $sprintDetails->name ?><a class="btn" href="<?= $this->basePath() . "/scrum/sprint/edit/" . $sprintDetails->id_sprint ?>">Edit</a></h1>
 <span>From <?= $sprintDetails->start_date ?> to <?= $sprintDetails->end_date ?></span>
-
-<h1>List of stories</h1>
+<h2>List of stories</h2>
 <table class="table table-striped">
     <thead>
-        <tr><th>Name</th><th>Description</th><th>Status</th><th></th></tr>
+        <tr><th><th>Name</th><th>Description</th><th>Status</th><th></th></tr>
     </thead>
     <?php foreach ($this->listStories AS $story): ?>
-        <tr><td><?= $story->name; ?></td><td><?= $story->description; ?></td><td><?= $story->status; ?></td><td><a href="<?= $this->basePath() ?>">Détail</a></td></tr>
+        <tr><td><img src="http://www.wunderbites.co.nz/images/icon-story.png"></td><td><?= $story->name; ?></td><td><?= $story->description; ?></td><td><?= $story->status; ?></td><td><a href="<?= $this->basePath() ?>/scrum/story/detail/<?= $story->id_story ?>">Détail</a></td></tr>
         <?php
     endforeach;
     ?>
     <tfoot>
-        <tr><td colspan="3">
+        <tr><td colspan="5">
                 <?= $this->form()->openTag($linkForm) ?>
                 <?= $this->formRow($linkForm->get("fk_id_story")); ?>
                 <?= $this->formRow($linkForm->get("submit")); ?>

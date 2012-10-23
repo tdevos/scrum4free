@@ -24,30 +24,41 @@ class Task extends EventManager implements ServiceManagerAwareInterface
     public function getTaskTableModel(){
         return $this->getServiceManager()->get("Scrum\Model\TaskTable");
     }
+    
+    function save(TaskEntity $taskEntity){
+        if (is_null($taskEntity->getIdTask())) {
+            return $this->getTaskTableModel()->insert($taskEntity->getNotNull());
+        } else {
+            return $this->getTaskTableModel()->update($taskEntity->getNotNull(),array("id_story" => $taskEntity->getIdStory()));
+        }
+    }
+    
+    function select(TaskEntity $taskEntity){
+        
+        $where = array();
+        
+        if(!is_null($taskEntity->getIdTask()))
+            $where["id_task"] = $taskEntity->getIdTask ();
+        if(!is_null($taskEntity->getFkIdStory()))
+            $where["fk_id_story"] = $taskEntity->getFkIdStory ();
+        if(!is_null($taskEntity->getName()))
+            $where["name"] = $taskEntity->getName ();
+        if(!is_null($taskEntity->getDescription()))
+            $where["description"] = $taskEntity->getDescription ();
+        if(!is_null($taskEntity->getStatus()))
+            $where["status"] = $taskEntity->getStatus ();
+        if(!is_null($taskEntity->getTime()))
+            $where["time"] = $taskEntity->getTime ();
+        if(!is_null($taskEntity->getActors()))
+            $where["actors"] = $taskEntity->getActors ();
+        
+        return $this->getTaskTableModel()->select($where);
+        
+    }
+    
 
     public function remove(TaskEntity $taskEntity){
         return $this->getTaskTableModel()->delete($taskEntity->getIdTask());
-    }
-    
-    public function add(TaskEntity $taskEntity){
-        return $this->getTaskTableModel()->add(
-                    $taskEntity->getTitle(),
-                    $taskEntity->getDescription(),
-                    $taskEntity->getTime(),
-                    $taskEntity->getActors(),
-                    $taskEntity->getStatus()
-                );
-    }
-    
-    public function edit(TaskEntity $taskEntity){
-        return $this->getTaskTableModel()->edit(
-                    $taskEntity->getIdTask(),
-                    $taskEntity->getTitle(),
-                    $taskEntity->getDescription(),
-                    $taskEntity->getTime(),
-                    $taskEntity->getActors(),
-                    $taskEntity->getStatus()
-                );
     }
     
     public function fetchOne(TaskEntity $taskEntity){

@@ -12,16 +12,20 @@ class Task extends Zend_Form{
     function __construct($name = null) {
         parent::__construct($name);
         
-        $title = new Input_Text("title");
-        $this->add($title);
+        $name = new Input_Text("name");
+        $name->setLabel("Name");
+        $this->add($name);
         
         $description = new Input_Textarea("description");
+        $description->setLabel("Description");
         $this->add($description);
         
         $time = new Input_Text("time");
+        $time->setLabel("Time");
         $this->add($time);
         
         $actors = new Input_Text("actors");
+        $actors->setLabel("Actors");
         $this->add($actors);
         
         $submit = new Input_Submit("submit");

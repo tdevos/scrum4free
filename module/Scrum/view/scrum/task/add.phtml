@@ -1,0 +1,11 @@
+<?php 
+    $taskForm = $this->taskForm;
+?>
+
+<?= $this->form()->openTag($taskForm) ?>
+<?= $this->formRow()->render($taskForm->get("name")) ?>
+<?= $this->formRow()->render($taskForm->get("description")) ?>
+<?= $this->formRow()->render($taskForm->get("time")) ?>
+<?= $this->formRow()->render($taskForm->get("actors")) ?>
+<?= $this->formSubmit()->render($taskForm->get("submit")) ?>
+<?= $this->form()->closeTag() ?>

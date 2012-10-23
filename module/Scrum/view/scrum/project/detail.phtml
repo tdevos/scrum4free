@@ -2,36 +2,39 @@
 $projectDetails = $this->projectDetails;
 $listSprint = $this->listSprint;
 ?>
-<h1><?= $projectDetails->name ?><a class="btn" href="<?= $this->basePath() . "/scrum/project/edit/" . $projectDetails->id_project ?>">Edit</a></h1>
+<a href="<?= $this->basePath() ?>/scrum/project/list">List of projects</a>
+<h1>Project : <?= $projectDetails->name ?><a class="btn" href="<?= $this->basePath() . "/scrum/project/edit/" . $projectDetails->id_project ?>">Edit</a></h1>
 <h2>Description</h2>
-<pre><?= $projectDetails->description ?></pre>
+<p class="description"><?= $projectDetails->description ?></p>
 
-<h1>List of Sprints</h1>
-<table class="table table-striped">
+<h2>List of Sprints</h2>
+<table class="table sprints">
     <thead>
-        <tr><th>Name</th><th>Start date</th><th>End date</th><th></th></tr>
+        <tr><th></th><th>Name</th><th>Start date</th><th>End date</th><th></th></tr>
     </thead>
-    <?php foreach ($listSprint AS $sprint): ?>
-        <tr><td><?= $sprint->name; ?></td><td><?= $sprint->start_date; ?></td><td><?= $sprint->end_date; ?></td><td><a href="<?= $this->basePath() ?>/scrum/sprint/detail/<?= $sprint->id_sprint ?>">Détail</a></td></tr>
-        <?php
-    endforeach;
-    ?>
+    <tbody>
+        <?php foreach ($listSprint AS $sprint): ?>
+        <tr><td><img src="http://www.tfam.museum/SysUpDoc/FTP/UpImages/Visit/icon_hour.gif"></td><td><?= $sprint->name; ?></td><td><?= $sprint->start_date; ?></td><td><?= $sprint->end_date; ?></td><td><a href="<?= $this->basePath() ?>/scrum/sprint/detail/<?= $sprint->id_sprint ?>">Détail</a></td></tr>
+            <?php
+        endforeach;
+        ?>
+    </tbody>
     <tfoot>
-        <tr><td colspan="4"><a href="<?= $this->basePath() ?>/scrum/sprint/add/<?= $projectDetails->id_project ?>" class="btn btn-primary">Add a sprint</a></td></tr>
+        <tr><td colspan="5"><a href="<?= $this->basePath() ?>/scrum/sprint/add/<?= $projectDetails->id_project ?>" class="btn btn-primary">Add a sprint</a></td></tr>
     </tfoot>
 </table>
 
-<h1>List of orphan stories</h1>
+<h2>List of orphan stories</h2>
 <table class="table table-striped">
     <thead>
-        <tr><th>Name</th><th>Description</th><th>Status</th><th></th></tr>
+        <tr><th></th><th>Name</th><th>Description</th><th>Status</th><th></th></tr>
     </thead>
     <?php foreach ($this->listStories AS $story): ?>
-        <tr><td><?= $story->name; ?></td><td><?= $story->description; ?></td><td><?= $story->status; ?></td><td><a href="<?= $this->basePath() ?>">Détail</a></td></tr>
+        <tr><td><img src="http://www.wunderbites.co.nz/images/icon-story.png"></td><td><?= $story->name; ?></td><td><?= $story->description; ?></td><td><?= $story->status; ?></td><td><a href="<?= $this->basePath() ?>/scrum/story/detail/<?= $story->id_story ?>">Détail</a></td></tr>
         <?php
     endforeach;
     ?>
     <tfoot>
-        <tr><td colspan="4"><a href="<?= $this->basePath() ?>/scrum/story/add/<?= $projectDetails->id_project ?>" class="btn btn-primary">Add a story</a></td></tr>
+        <tr><td colspan="5"><a href="<?= $this->basePath() ?>/scrum/story/add/<?= $projectDetails->id_project ?>" class="btn btn-primary">Add a story</a></td></tr>
     </tfoot>
 </table>

@@ -31,7 +31,7 @@ class Story extends EventManager implements ServiceManagerAwareInterface {
     /***************************************************************************************************************** */
     
     public function saveFromPost(\ArrayObject $formData, $idStory = null){
-        
+                
         $storyEntity = new StoryEntity();
         
         if(!is_null($idStory))
@@ -80,6 +80,15 @@ class Story extends EventManager implements ServiceManagerAwareInterface {
         $storyEntity->setFkIdSprint($sprintId);
         
         return $this->getStoryMapper()->save($storyEntity);
+        
+    }
+    
+    public function getStoryDetails($storyId){
+        
+        $storyEntity = new StoryEntity();
+        $storyEntity->setIdStory($storyId);
+        
+        return $this->getStoryMapper()->select($storyEntity);
         
     }
     

@@ -45,7 +45,7 @@ class Story extends EventManager implements ServiceManagerAwareInterface {
     public function select(StoryEntity $storyEntity) {
 
         $where = array();
-
+        
         if (!is_null($storyEntity->getIdStory()))
             $where["id_story"] = $storyEntity->getIdStory();
         if (!is_null($storyEntity->getFkIdProject()))

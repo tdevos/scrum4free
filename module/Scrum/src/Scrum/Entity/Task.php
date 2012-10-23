@@ -2,10 +2,11 @@
 
 namespace Scrum\Entity;
 
-class Task implements TaskInterface{
+class Task{
     
     protected $id_task;
-    protected $title;
+    protected $fk_id_story;
+    protected $name;
     protected $description;
     protected $time;
     protected $actors;
@@ -18,11 +19,19 @@ class Task implements TaskInterface{
         return $this->id_task;
     }
     
-    public function setTitle($title){
-        $this->title = $title;
+    public function setFkIdStory($idStory){
+        $this->fk_id_story = $idStory;
     }
-    public function getTitle(){
-        return $this->title;
+    
+    public function getFkIdStory(){
+        return $this->fk_id_story;
+    }
+    
+    public function setName($name){
+        $this->name = $name;
+    }
+    public function getName(){
+        return $this->name;
     }
     
     public function setDescription($description){
@@ -52,6 +61,35 @@ class Task implements TaskInterface{
     
     public function getStatus(){
         return $this->status;
+    }
+    
+    public function getNotNull(){
+        
+        $array = array();
+        
+        if($this->getIdTask() != null)
+            $array["id_task"] = $this->getIdTask ();
+        
+        if($this->getFkIdStory() != null)
+            $array["fk_id_story"] = $this->getFkIdStory ();
+        
+        if($this->getDescription() != null)
+            $array["description"] = $this->getDescription ();
+        
+        if($this->getName() != null)
+            $array["name"] = $this->getName ();
+        
+        if($this->getActors() != null)
+            $array["actors"] = $this->getActors ();
+        
+        if($this->getStatus() != null)
+            $array["status"] = $this->getStatus ();
+        
+        if($this->getTime() != null)
+            $array["time"] = $this->getTime ();
+        
+        return $array;
+        
     }
         
 }

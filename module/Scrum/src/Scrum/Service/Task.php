@@ -29,6 +29,37 @@ class Task extends EventManager implements ServiceManagerAwareInterface{
         }
         return $this->taskMapper;
     }
+
+    /***************************************************************************************************************** */
+    
+    public function saveFromPost(\ArrayObject $postData, $idTask = null) {
+        
+        $taskEntity = new TaskEntity();
+        
+        if(!is_null($idTask))
+            $taskEntity->setIdTask($idTask);
+        
+        if(!is_null($postData->fk_id_story))
+            $taskEntity->setFkIdStory ($postData->fk_id_story);
+        
+        $taskEntity->setName($postData->name);
+        $taskEntity->setDescription($postData->description);
+        $taskEntity->setStatus($postData->status);
+        $taskEntity->setTime($postData->time);
+        $taskEntity->setActors($postData->actors);
+        
+        $this->getTaskMapper()->save($taskEntity);
+        
+    }
+    
+    public function listTasksWithStoryId($storyId){
+        
+        $taskEntity = new TaskEntity();
+        $taskEntity->setFkIdStory($storyId);
+        
+        return $this->getTaskMapper()->select($taskEntity);
+        
+    }
     
     public function get($id){
         

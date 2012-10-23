@@ -15,6 +15,8 @@ return array(
     'db' => array(
         'driver'         => 'Pdo',
         'dsn'            => 'mysql:dbname=scrum4free;host=localhost',
+        'username'       => 'root',
+        'password'       => 'thomas',
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),

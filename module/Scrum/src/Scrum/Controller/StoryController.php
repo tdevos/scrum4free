@@ -36,6 +36,19 @@ class StoryController extends AbstractActionController
         return new ViewModel(array("listStories" => $listStories));
         
     }
+    
+    public function detailAction(){
+        $idStory = $this->getEvent()->getRouteMatch()->getParam("key");
+        
+        $sm = $this->getServiceLocator()->get("scrum_service_story");
+        $storyDetails = $sm->getStoryDetails($idStory);
+        
+        $sm = $this->getServiceLocator()->get("scrum_service_task");
+        $listTasks = $sm->listTasksWithStoryId($idStory);
+        
+        return new ViewModel(array("storyDetails" => $storyDetails, "listTasks" => $listTasks));
+        
+    }
 }
 
 ?>

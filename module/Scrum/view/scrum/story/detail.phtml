@@ -1,0 +1,38 @@
+<?php
+    $storyDetails = $this->storyDetails;
+?>
+<?php if($storyDetails->fk_id_sprint != null){ ?>
+    <a href="<?= $this->basePath() ?>/scrum/sprint/detail/<?= $storyDetails->fk_id_sprint ?>">Back to sprint</a>
+    <h1>Story : <?= $storyDetails->name ?></h1>
+<?php }else{ ?>
+    <a href="<?= $this->basePath() ?>/scrum/project/detail/<?= $storyDetails->fk_id_project ?>">Back to project</a>
+    <h1>Orphan story : <?= $storyDetails->name ?></h1>
+<?php } ?>
+<p class="description"><?= $storyDetails->description ?></p>
+<h2>List of tasks</h2>
+<table class="table table-striped">
+    <thead>
+        <tr><th></th><th>Name</th><th>Description</th><th>Status</th><th>Time</th><th>Actors</th><th></th></tr>
+    </thead>
+    <?php foreach ($this->listTasks AS $task): ?>
+        <tr>
+            <td><img src="http://www.wunderbites.co.nz/images/icon-story.png"></td>
+            <td><?= $task->name; ?></td>
+            <td><?= $task->description; ?></td>
+            <td><?= $task->status; ?></td>
+            <td><?= $task->time; ?></td>
+            <td><?= $task->actors; ?></td>
+            <td><a href="<?= $this->basePath() ?>">Détail</a></td>
+        </tr>
+        <?php
+    endforeach;
+    
+    if($storyDetails->fk_id_sprint == null){
+    ?>
+    <tfoot>
+        <tr><td colspan="7"><a href="<?= $this->basePath() ?>/scrum/task/add/<?= $storyDetails->id_story ?>" class="btn btn-primary">Add a task</a></td></tr>
+    </tfoot>
+    <?php
+    }
+    ?>
+</table>

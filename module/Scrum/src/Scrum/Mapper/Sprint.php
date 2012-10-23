@@ -67,7 +67,10 @@ class Sprint extends EventManager implements ServiceManagerAwareInterface {
         if (!is_null($sprintEntity->getEndDate()))
             $where["end_date"] = $sprintEntity->getEndDate();
 
-        $result = $this->getSprintTableModel()->select($where);
+        $oui = new \Scrum\Model\SprintTable();
+        $result = $oui->getAdapter()->query("select * from sprint")->execute($parameters);
+        
+//        $result = $this->getSprintTableModel()->select($where);
         
         if (!is_null($sprintEntity->getIdSprint()))
             return $result->current();

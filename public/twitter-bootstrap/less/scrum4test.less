@@ -4,106 +4,48 @@
 
 // Variables
 
-@taskStateBg1 : #F9F9F9;
-@taskStateBg2 : darken(@taskStateBg1, 10%);
+@mainColor : #3399FF;
 
-@taskStateColor : darken(@taskStateBg1, 60%);
+@bgNavbar1 : @mainColor;
+@bgNavbar2 : darken(@mainColor, 10);
+@navbarColor : white;
 
-@taskBg : #DDDDDD;
-
-@columnBg : #FFFFFF;
-
-// ----------
-
-.column{
-    min-height:500px;
-    .box-shadow(0 0 1px rgba(0,0,0, .5) inset);
-    height:100%;
-    padding-bottom:30px;
-    position:relative;
-    input.addTask{
-        width:100%;
-        // position:absolute;
-        top:0px;
-        font-size:11px;
-    }
-    .taskAdding{
-        display:none;
-        background-color:@taskBg;
-        margin:5px;
-        padding:5px;
-        .clearfix();
-        .border-radius(3px);
-        div, label{
-            input{width:80%;}
-        }
-        .block-title{
-            float:left;
-            width:70%;
-        }
-        .block-time{
-            float:left;
-            width:20%;
-        }
-        input[type='submit']{
-            float:right;
-        }
+.navbar .navbar-inner{
+    #gradient > .vertical(@bgNavbar1, @bgNavbar2);
+    a, ul li a {
+        color: @navbarColor;
+        text-shadow: 0 1px 0 lighten(@bgNavbar1, 10); 
     }
 }
 
-.taskState{
-    #gradient > .vertical(@taskStateBg1, @taskStateBg2);
-    text-align:center;
-    padding:5px;
-    .box-shadow(0 2px 2px rgba(0,0,0,.1));
-    color:@taskStateColor;
-    margin-bottom:5px;
-}
-
-.task{
-    background-color:@taskBg;
-    margin:5px;
-    padding:5px;
-    .clearfix();
-    .border-radius(3px);
-    .title{
-        border-bottom:solid 1px rgba(0,0,0,.1);
-        font-size:15px;
-        text-align:center;
-        cursor:move;
-        span.taskId{
-            float:left;
-            font-size:11px;
-        }
-        span.timeAmount{
-            float:right;
-            font-size:13px;
-            font-weight:bold;
-            background-color:darken(@taskStateBg1,60%);
-            color:@taskStateBg1;
-            width:20px;
-            height:20px;
-            padding:2px 3px 3px 2px ;
-            position:relative;
-            left:5px;
-            top:-5px;
-        }
-    }
-    .description{
-        font-size:13px;
-        padding:5px;
-    }
-    .actors{
-        clear:both;
-        font-size:11px;
-    }
-    .actions{
+h1{
+    font-size:21px;
+    a {
         float:right;
-        font-size:9px;
     }
 }
 
-.columnHover{
-    background-color:darken(@columnBg, 10%);
+h2{
+    font-size:15px;
+    margin:5px;
+    line-height:1.3em;
 }
 
+p.description{
+    background-color:lighten(@mainColor, 35);
+    padding: 15px;
+}
+
+table{
+    tbody tr td:first-child{
+        width:20px;
+        text-align:center;
+    }
+    tfoot tr, thead tr{
+        background-color: #eee;
+        a{
+            float:right;
+        }
+    }
+//    border:solid 1px black;
+}

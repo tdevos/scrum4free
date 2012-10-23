@@ -35,6 +35,7 @@ return array(
             'project' => 'Scrum\Controller\ProjectController',
             'story' => 'Scrum\Controller\StoryController',
             'sprint' => 'Scrum\Controller\SprintController',
+            'task' => 'Scrum\Controller\TaskController',
         ),
     ),
     'view_manager' => array(
